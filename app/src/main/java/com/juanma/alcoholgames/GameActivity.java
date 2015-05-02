@@ -1,34 +1,53 @@
 package com.juanma.alcoholgames;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 
-import com.astuetz.PagerSlidingTabStrip;
-import com.juanma.alcoholgames.adapter.GameTabsPagerAdapter;
 import com.juanma.alcoholgames.utils.GamesInfoNames;
 
 
-public class GameActivity extends FragmentActivity {
+public class GameActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // Get the ViewPager and set it's PagerAdapter so that it can display items
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new GameTabsPagerAdapter(
-                getSupportFragmentManager(),
-                (Game) getIntent().getExtras().getSerializable(GamesInfoNames.GAME_OBJ)
-        ));
+        // Setting the view:
+        Game selectedGame = (Game) getIntent().getExtras().getSerializable(GamesInfoNames.GAME_OBJ);
+        TextView description, instructions, addons, addonsTitle;
 
-        // Give the PagerSlidingTabStrip the ViewPager:
-        PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-        // Attach the view pager to the tab strip
-        tabsStrip.setViewPager(viewPager);
+        setTitle(selectedGame.getTitle());
 
+        // Instructions' text
+        instructions = (TextView) findViewById(R.id.instructions);
+        instructions.setText(selectedGame.getInstructions());
+
+        // Description's text
+        description = (TextView) findViewById(R.id.description);
+        if ( !selectedGame.hasDescription() ) {
+            description.setVisibility(View.GONE);
+        }
+        else {
+            description.setText(selectedGame.getDescription());
+        }
+
+        // Add-ons' text
+        addons = (TextView) findViewById(R.id.addons);
+        addonsTitle = (TextView) findViewById(R.id.addonsTitle);
+        if ( !selectedGame.hasAddons() ) {
+            addons.setVisibility(View.GONE);
+            addonsTitle.setVisibility(View.GONE);
+        }
+        else {
+            addons.setText(selectedGame.getAddons());
+        }
     }
 
     @Override

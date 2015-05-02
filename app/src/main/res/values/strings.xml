@@ -4,6 +4,7 @@
     <string name="action_settings">Settings</string>
     <string name="instructions">CÓMO JUGAR:</string>
     <string name="favourites">Favoritos</string>
+    <string name="addons">Add-Ons:</string>
 
     <!-- Colors: -->
     <color name="white">#FFFFFF</color>

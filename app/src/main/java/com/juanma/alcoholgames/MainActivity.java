@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*led
+        /*
         TODO FEATURE: Buscador por nombre/tags
         TODO FEATURE: Agregar a favoritos
         TODO FEATURE: Editar/agregar (se guarda localmente)
@@ -61,8 +61,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         // Third, I create an adapter and set it to the ListView
-        GameArrayAdapter adapter = new GameArrayAdapter(this,
-                R.layout.game_layout, gamesList);
+        GameArrayAdapter adapter = new GameArrayAdapter(this, R.layout.game_layout, gamesList);
         gamesListView.setAdapter(adapter);
 
         // Finally, the click listener for the ListView
@@ -102,10 +101,7 @@ public class MainActivity extends ActionBarActivity {
     public void openGame(Game game, boolean hasAddons) {
         // I create the intent depending on the view to be used
         Intent intent;
-        if (hasAddons)
-            intent = new Intent("com.juanma.alcoholgames.GameActivity");
-        else
-            intent = new Intent("com.juanma.alcoholgames.DescriptionGameActivity");
+        intent = new Intent("com.juanma.alcoholgames.GameActivity");
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(GamesInfoNames.GAME_OBJ, game);

@@ -27,14 +27,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".DescriptionGameActivity">
-            <intent-filter>
-                <action android:name="com.juanma.alcoholgames.DescriptionGameActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
     </application>
 
 </manifest>

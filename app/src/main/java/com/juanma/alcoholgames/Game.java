@@ -40,4 +40,6 @@ public class Game implements Serializable {
     public boolean hasAddons() {
         return !addons.equals("");
     }
+
+    public boolean hasDescription() { return !description.equals(""); }
 }
