@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Load error"
+        android:id="@+id/game_name"
+        android:layout_gravity="center_vertical" />
+
+    <!-- This view allows the CheckBox to align to the right -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox"
+        android:layout_gravity="center_vertical" />
+
+</LinearLayout>

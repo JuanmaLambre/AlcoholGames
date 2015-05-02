@@ -1,0 +1,90 @@
+{
+    "Games": [
+
+    {
+        "id": 1,
+        "title": "El Reloj",
+        "description": "Con el add-on se chupa mucho",
+        "instructions": "Pone 12 cartas y chupa mucho alcohol",
+        "add-ons": "Ir chupando durante los 5 segundos"
+    },
+    {
+        "id": 2,
+        "title": "El juego de los nombres",
+        "description": "Clave para aprenderse el nombre de gente desconocida",
+        "instructions": "Deci muchos nombres y chupa más alcohol",
+        "add-ons": ""
+    },
+    {
+        "id": 3,
+        "title": "Zoo",
+        "description": "",
+        "instructions": "Todos son unos animales y hacen fondo sin dientes (?)",
+        "add-ons": ""
+    },
+    {
+        "id": 4,
+        "title": "Carrera de caballos",
+        "description": "Automatico",
+        "instructions": "Cuatro columnas, se van tirando cartas",
+        "add-ons": ""
+    },
+    {
+        "id": 5,
+        "title": "El puente",
+        "description": "Rápido",
+        "instructions": "You know...",
+        "add-ons": ""
+    },
+    {
+        "id": 6,
+        "title": "Kiwis",
+        "description": "",
+        "instructions": "'mis' kiwis, medio kiwi, 'destino' kiwis",
+        "add-ons": "Si se juega con limones en vez de kiwis puede ser más fácil"
+    },
+    {
+        "id": 7,
+        "title": "Contacto!",
+         "description": "MUY rápido (sino no es divertido)",
+         "instructions": "Uno piensa una palabra y da la primera letra. La gente hace preguntas para descubrir la palabra. Si uno cree saber qué piensa el que preguntó grita \"contacto\", 5, 4, 3, 2, 1. El que tenia la palabra debe pensar otra con las mismas letras",
+         "add-ons": ""
+    },
+    {
+        "id": 8,
+        "title": "Juego largo",
+         "description": "-",
+         "instructions": "laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaargoooooooooooooooooooooooooooooooooooooooooooooooooooooo, muuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuy kaaaaaaaaaaaaaaaaaaaaaaaaaaaaaargooooooooooooooooooOO!!!!!!!!!!!!!!!!!!!",
+         "add-ons": ""
+    },
+    {
+        "id": 9,
+        "title": "Juego 3",
+         "description": "-",
+         "instructions": "-",
+         "add-ons": ""
+    },
+    {
+        "id": 10,
+        "title": "Juego 4",
+         "description": "-",
+         "instructions": "-",
+         "add-ons": ""
+    },
+    {
+        "id": 11,
+        "title": "Juego 5",
+         "description": "-",
+         "instructions": "-",
+         "add-ons": ""
+    },
+    {
+        "id": 12,
+        "title": "Juego 6",
+         "description": "-",
+         "instructions": "-",
+         "add-ons": ""
+    }
+
+    ]
+}

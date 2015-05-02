@@ -1,6 +1,18 @@
 <resources>
-    <string name="app_name">AlcoholGames</string>
+    <string name="app_name">Alcohol Games</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="instructions">CÓMO JUGAR:</string>
+    <string name="favourites">Favoritos</string>
+
+    <!-- Colors: -->
+    <color name="white">#FFFFFF</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="grey42">#424242</color>
+    <color name="grey30">#303030</color>
+    <color name="grey21">#212121</color>
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+    <color name="darkRed">#D00000</color>
+
 </resources>
