@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">Alcohol Games</string>
 
-    <string name="action_settings">Settings</string>
+    <!-- MainActivity ActionBar items -->
+    <string name="favorites">Favoritos</string>
+    <string name="search">Buscar</string>
+    <string name="addGame">Agregar</string>
+
+    <!-- GameActivity values -->
     <string name="instructions">CÓMO JUGAR:</string>
-    <string name="favourites">Favoritos</string>
     <string name="addons">Add-Ons:</string>
+    <string name="share">Compartir</string>
+    <string name="fav">Fav</string>
+    <string name="edit">Editar</string>
 
     <!-- Colors: -->
     <color name="white">#FFFFFF</color>

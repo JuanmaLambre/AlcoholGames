@@ -3,7 +3,11 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants" >
+    android:descendantFocusability="beforeDescendants" >
+
+    <!-- TODO FEATURE: Agregar icono indicando "tomabilidad" del juego.
+            Se me ocurre que el icono puede ser una copa/vaso que cuanto mas lleno
+            mas se toma en el juego -->
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,17 +17,21 @@
         android:id="@+id/game_name"
         android:layout_gravity="center_vertical" />
 
-    <!-- This view allows the CheckBox to align to the right -->
+    <!-- This view allows the ImageView to align to the right -->
     <View
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_weight="1"
         />
 
-    <CheckBox
+    <!-- Appears only when game is faved -->
+    <ImageView
+        android:id="@+id/fav_icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
-        android:layout_gravity="center_vertical" />
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="6dip"
+        android:src="@drawable/star_on" />
 
 </LinearLayout>

@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <!-- Former parent style: parent="Theme.AppCompat.Light.DarkActionBar" -->
     <style name="AppTheme" parent="Theme.AppCompat">
-        <!-- Customize your theme here. -->
+        <item name="android:homeAsUpIndicator">@android:drawable/ic_menu_revert</item>
     </style>
 
 </resources>

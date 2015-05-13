@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/fav_icon"
+        android:title="@string/fav"
+        android:orderInCategory="100"
+        android:icon="@drawable/star_off"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/edit"
+        android:title="@string/edit"
+        android:orderInCategory="100"
+        android:icon="@android:drawable/ic_menu_edit"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/share"
+        android:title="@string/share"
+        android:orderInCategory="100"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="always"
+        android:actionProviderClass="android.widget.ShareActionProvider"/>
 
 </menu>
