@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 public class Game implements Serializable {
 
+    private int id;
     private String title, description, instructions, addons;
     private boolean isFavorite;
 
@@ -52,16 +53,20 @@ public class Game implements Serializable {
     public boolean isFaved() {
         return isFavorite;
     }
+    public int getID() {
+        return id;
+    }
 
     // Creators:
     public static Game hydrate(JSONObject jsonGame) {
         Game newGame = new Game();
         try {
-            newGame.setTitle(jsonGame.getString(GamesInfoNames.GAME_TITLE));
-            newGame.setAddons(jsonGame.getString(GamesInfoNames.GAME_ADDONS));
-            newGame.setDescription(jsonGame.getString(GamesInfoNames.GAME_DESCRIPTION));
-            newGame.setInstructions(jsonGame.getString(GamesInfoNames.GAME_INSTRUCTIONS));
-            newGame.setFavorite(jsonGame.getBoolean(GamesInfoNames.GAME_ISFAV));
+            newGame.title = jsonGame.getString(GamesInfoNames.GAME_TITLE);
+            newGame.addons = jsonGame.getString(GamesInfoNames.GAME_ADDONS);
+            newGame.description = jsonGame.getString(GamesInfoNames.GAME_DESCRIPTION);
+            newGame.instructions = jsonGame.getString(GamesInfoNames.GAME_INSTRUCTIONS);
+            newGame.isFavorite = jsonGame.getBoolean(GamesInfoNames.GAME_ISFAV);
+            newGame.id = jsonGame.getInt(GamesInfoNames.GAME_ID);
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -69,6 +74,7 @@ public class Game implements Serializable {
 
         return newGame;
     }
+
     public Game() {
         this.title = null;
         this.description = null;
@@ -100,6 +106,7 @@ public class Game implements Serializable {
     public JSONObject toJSONObject() {
         JSONObject jsonGame = new JSONObject();
         try {
+            jsonGame.put(GamesInfoNames.GAME_ID, id);
             jsonGame.put(GamesInfoNames.GAME_TITLE, title);
             jsonGame.put(GamesInfoNames.GAME_INSTRUCTIONS, instructions);
             jsonGame.put(GamesInfoNames.GAME_DESCRIPTION, description);
@@ -112,4 +119,14 @@ public class Game implements Serializable {
 
         return jsonGame;
     }
+
+    public boolean hasTags(String[] words) {
+        for (String word : words) {
+            if (title.toLowerCase().contains(word.toLowerCase())
+                    || instructions.toLowerCase().contains(word.toLowerCase()))
+                return true;
+        }
+        return false;
+    }
+
 }

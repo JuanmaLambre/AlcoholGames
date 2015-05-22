@@ -1,5 +1,7 @@
 package com.juanma.alcoholgames;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -23,7 +25,8 @@ public class GameActivity extends ActionBarActivity {
         setContentView(R.layout.activity_game);
 
         // Setting the view:
-        currentGame = (Game) getIntent().getExtras().getSerializable(GamesInfoNames.GAME_OBJ);
+        int gameId = getIntent().getExtras().getInt(GamesInfoNames.GAME_ID);
+        currentGame = GamesList.getInstance().getByID(gameId);
         TextView description, instructions, addons, addonsTitle;
 
         // ActionBar:
@@ -66,36 +69,50 @@ public class GameActivity extends ActionBarActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        // Fav icon pressed:
-        case R.id.fav_icon:
-            if (currentGame.isFaved()) {
-                currentGame.unfav();
-                favIcon.setIcon(R.drawable.star_off);
-            } else {
-                currentGame.fav();
-                favIcon.setIcon(R.drawable.star_on);
-                Toast.makeText(this, "Faved", Toast.LENGTH_SHORT).show();
-            }
-            break;
-        // Home button pressed:
-        case android.R.id.home:
-            onBackPressed();
-            break;
+            case R.id.fav_icon:
+                if (currentGame.isFaved()) {
+                    currentGame.unfav();
+                    favIcon.setIcon(R.drawable.star_off);
+                } else {
+                    currentGame.fav();
+                    favIcon.setIcon(R.drawable.star_on);
+                    Toast.makeText(this, "Faved", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.delete:
+                // Delete confirmation
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.delete_warning)
+                        .setMessage(R.string.delete_confirmation)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                GamesList.getInstance().remove(currentGame);
+                                onBackPressed();
+                            }})
+                        .setNegativeButton(R.string.no, null).show();
+                break;
+            case R.id.share:
+                // TODO: compartir juego
+                break;
+            case android.R.id.home:
+                onBackPressed();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onBackPressed() {
-        int gamePosition = getIntent().getExtras().getInt(GamesInfoNames.GAME_POSITION);
 
-        Intent gameIntent = new Intent();
-        gameIntent.putExtra(GamesInfoNames.GAME_OBJ, currentGame);
-        gameIntent.putExtra(GamesInfoNames.GAME_POSITION, gamePosition);
-        setResult(RESULT_OK, gameIntent);
-        finish();
+    /* Allways use this method to create an intent,
+    so you will know what parameters the intent needs */
+    public static Intent createIntent(int gameID) {
+        Intent intent = new Intent("com.juanma.alcoholgames.GameActivity");
+        intent.putExtra(GamesInfoNames.GAME_ID, gameID);
+        return intent;
     }
+
 }

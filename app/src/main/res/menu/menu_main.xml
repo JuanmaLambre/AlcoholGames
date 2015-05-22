@@ -15,10 +15,17 @@
         android:icon="@drawable/star_on"
         app:showAsAction="never|withText" />
 
+    <item android:id="@+id/credits"
+        android:title="@string/credits"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <!-- NOT YET
     <item android:id="@+id/addGame"
         android:title="@string/addGame"
         android:orderInCategory="100"
         android:icon="@android:drawable/ic_input_add"
         app:showAsAction="never|withText"/>
+    -->
 
 </menu>

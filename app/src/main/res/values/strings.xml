@@ -5,6 +5,7 @@
     <string name="favorites">Favoritos</string>
     <string name="search">Buscar</string>
     <string name="addGame">Agregar</string>
+    <string name="credits">Créditos</string>
 
     <!-- GameActivity values -->
     <string name="instructions">CÓMO JUGAR:</string>
@@ -12,6 +13,7 @@
     <string name="share">Compartir</string>
     <string name="fav">Fav</string>
     <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
 
     <!-- Colors: -->
     <color name="white">#FFFFFF</color>
@@ -22,5 +24,11 @@
     <color name="black">#000000</color>
     <color name="red">#FF0000</color>
     <color name="darkRed">#D00000</color>
+
+    <!-- For dialogs: -->
+    <string name="delete_warning">Eliminar juego</string>
+    <string name="delete_confirmation">¿Seguro que deseas eliminar este juego?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
 
 </resources>

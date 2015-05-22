@@ -2,14 +2,19 @@ package com.juanma.alcoholgames;
 
 import android.content.Intent;
 import android.os.Environment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.juanma.alcoholgames.adapter.GameArrayAdapter;
 import com.juanma.alcoholgames.utils.GamesInfoNames;
@@ -33,11 +38,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
-    private GameArrayAdapter gamesAdapter;
+    private GameArrayAdapter gamesAdapter, queryAdapter;
     private ListView gamesListView = null;
 
-    private static final int GAME_ACTIVITY = 1;
-    private static final int FAVORITES_ACTIVITY = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +48,18 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         /*
-        TODO FEATURE: Buscador por nombre/tags
-        TODO!!! FEATURE: Favoritos activity
+        TODO: Credits
         TODO FEATURE: Editar/agregar juego (se guarda localmente)
+        TODO: Games recovery option
          */
 
         // View and ArrayList containing the games:
         gamesListView = (ListView) findViewById(R.id.gamesListView);
-        ArrayList<Game> gamesList = new ArrayList<Game>();
 
         // Now I open the JSON File and then add all the games to the gamesList
         String JSONFile = loadJSONGamesInfo();
-        gamesList = getGamesFromJSON(JSONFile);
+        GamesList gamesList = GamesList.getInstance();
+        gamesList.loadFromJSON(JSONFile);
 
         // Then, I create an adapter and set it to the ListView
         gamesAdapter = new GameArrayAdapter(this, R.layout.game_list_view, gamesList);
@@ -67,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Game actualGame = (Game) gamesListView.getItemAtPosition(position);
-                openGame(actualGame, position);
+                startActivity(GameActivity.createIntent(actualGame.getID()));
             }
         });
 
@@ -81,6 +84,39 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         // ActionBar's search item listener:
+        MenuItem searcherItem = menu.findItem(R.id.action_search);
+        final SearchView searcher = (SearchView) searcherItem.getActionView();
+
+        MenuItemCompat.setOnActionExpandListener(searcherItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            // When the searcher expands the ListView adapter changes
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                GamesList gamesCopy = (GamesList) GamesList.getInstance().getArrayCopy();
+                queryAdapter = new GameArrayAdapter(
+                        getBaseContext(), R.layout.game_list_view, gamesCopy);
+                gamesListView.setAdapter(queryAdapter);
+                return true;
+            }
+            @Override
+            // When the searcher collapses the ListView adapter is set to the original
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                gamesListView.setAdapter(gamesAdapter);
+                return true;
+            }
+        });
+
+        searcher.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                // Nothing to do, list refreshes every time a key is pressed
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+                filterGamesBy(query.split(" "));
+                return true;
+            }
+        });
 
         return true;
     }
@@ -89,7 +125,7 @@ public class MainActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.favorites:
-            openFavorites();
+            startActivity(FavoritesActivity.createIntent());
             break;
         }
         return super.onOptionsItemSelected(item);
@@ -115,27 +151,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case MainActivity.GAME_ACTIVITY:
-                if (resultCode == RESULT_OK) {
-                    Game selectedGame, toModifyGame;
-                    int position;
-
-                    selectedGame = (Game) data.getExtras().getSerializable(GamesInfoNames.GAME_OBJ);
-                    position = data.getExtras().getInt(GamesInfoNames.GAME_POSITION);
-                    toModifyGame = gamesAdapter.getItem(position);
-                    toModifyGame.copyFrom(selectedGame);
-                }
-                break;
-
-            case MainActivity.FAVORITES_ACTIVITY:
-
-                break;
-        }
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         gamesAdapter.notifyDataSetChanged();
@@ -148,13 +163,8 @@ public class MainActivity extends ActionBarActivity {
             File filePath = new File(Environment.getExternalStorageDirectory(), "AlcoholGames");
             new PrintWriter( new File(filePath, GamesInfoNames.JSON_FILENAME) ).close();
 
-            // Now I'll make the JSONObject containing the games:
-            JSONObject games = new JSONObject();
-            JSONArray gamesArray = new JSONArray();
-            for(int i=0; i < gamesAdapter.getCount(); ++i) {
-                gamesArray.put(gamesAdapter.getItem(i).toJSONObject());
-            }
-            games.put(GamesInfoNames.GAMES_ARRAY, gamesArray);
+            // I get the JSONObject containing the games...
+            JSONObject games = GamesList.getInstance().toJSONObject();
 
             // Finally I write the JSONObject to the file
             File gamesFile = new File(filePath, GamesInfoNames.JSON_FILENAME);
@@ -162,10 +172,8 @@ public class MainActivity extends ActionBarActivity {
             output.write(games.toString().getBytes());
             output.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         super.onDestroy();
@@ -173,32 +181,6 @@ public class MainActivity extends ActionBarActivity {
 
 
     /**************************************** PRIVATE: ********************************************/
-
-    private void openGame(Game game, int position) {
-        // I create the intent depending on the view to be used
-        Intent intent;
-        intent = new Intent("com.juanma.alcoholgames.GameActivity");
-
-        intent.putExtra(GamesInfoNames.GAME_OBJ, game);
-        intent.putExtra(GamesInfoNames.GAME_POSITION, position);
-
-        startActivityForResult(intent, MainActivity.GAME_ACTIVITY);
-    }
-
-    private void openFavorites() {
-        Intent intent = new Intent("com.juanma.alcoholgames.FavoritesActivity");
-
-        ArrayList<Game> favorites = new ArrayList<Game>();
-        for (int i=0; i<gamesAdapter.getCount(); ++i) {
-            Game game = gamesAdapter.getItem(i);
-            if (game.isFaved())
-                favorites.add(game);
-        }
-
-        intent.putExtra(GamesInfoNames.FAVORITES, favorites);
-
-        startActivityForResult(intent, MainActivity.FAVORITES_ACTIVITY);
-    }
 
     // Return the JSON file as string
     private String loadJSONGamesInfo() {
@@ -245,29 +227,20 @@ public class MainActivity extends ActionBarActivity {
 
             fileOutput.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
-    private ArrayList<Game> getGamesFromJSON(String jsonFile) {
-        JSONObject gamesInfoObject = null;
-        ArrayList<Game> gamesList = new ArrayList<Game>();
-
-        try {
-            gamesInfoObject = new JSONObject(jsonFile);
-            JSONArray gamesArray = gamesInfoObject.getJSONArray(GamesInfoNames.GAMES_ARRAY);
-
-            // Creating the games to add them to the list
-            for (int i=0; i < gamesArray.length(); i++) {
-                Game actualGame = Game.hydrate(gamesArray.getJSONObject(i));
-                gamesList.add(actualGame);
+    private void filterGamesBy(String[] words) {
+        for (Game game : GamesList.getInstance()) {
+            if (queryAdapter.includes(game)) {
+                if (!game.hasTags(words))
+                    queryAdapter.remove(game);
+            } else {
+                if (game.hasTags(words))
+                    queryAdapter.add(game);
             }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-
-        } finally {
-            return gamesList;
         }
     }
 

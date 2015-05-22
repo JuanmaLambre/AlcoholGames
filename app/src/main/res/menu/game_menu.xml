@@ -8,17 +8,25 @@
         android:icon="@drawable/star_off"
         app:showAsAction="always"/>
 
-    <item android:id="@+id/edit"
-        android:title="@string/edit"
-        android:orderInCategory="100"
-        android:icon="@android:drawable/ic_menu_edit"
-        app:showAsAction="always"/>
-
     <item android:id="@+id/share"
         android:title="@string/share"
         android:orderInCategory="100"
         android:icon="@android:drawable/ic_menu_share"
-        app:showAsAction="always"
+        app:showAsAction="never"
         android:actionProviderClass="android.widget.ShareActionProvider"/>
+
+    <!-- NOT YET
+    <item android:id="@+id/edit"
+        android:title="@string/edit"
+        android:orderInCategory="100"
+        android:icon="@android:drawable/ic_menu_edit"
+        app:showAsAction="never"/>
+    -->
+
+    <item android:id="@+id/delete"
+        android:title="@string/delete"
+        android:orderInCategory="100"
+        android:icon="@android:drawable/ic_menu_delete"
+        app:showAsAction="never"/>
 
 </menu>

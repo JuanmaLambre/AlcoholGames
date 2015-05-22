@@ -23,12 +23,13 @@ public class GameArrayAdapter extends ArrayAdapter<Game> {
         layoutInflater = LayoutInflater.from(context);
     }
 
+    @Override
     public View getView(int position, View convertView, final ViewGroup parent) {
         View view = this.layoutInflater.inflate(R.layout.game_list_view, null);
-        final Game game = (Game) getItem(position);
+        final Game game = getItem(position);
 
         // Setting the view:
-        TextView gameName, subtitle;
+        TextView gameName;
         gameName = (TextView) view.findViewById(R.id.game_name);
         gameName.setText(game.getTitle());
 
@@ -40,5 +41,17 @@ public class GameArrayAdapter extends ArrayAdapter<Game> {
         }
 
         return view;
+    }
+
+    public Game getGameById(int id) {
+        for (int i=0; i<getCount(); ++i) {
+            if (id == getItem(i).getID())
+                return getItem(i);
+        }
+        return null;
+    }
+
+    public boolean includes(Game game) {
+        return (getPosition(game) != -1);
     }
 }
