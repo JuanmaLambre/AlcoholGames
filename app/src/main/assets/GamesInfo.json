@@ -5,98 +5,52 @@
         "id": 1,
         "title": "El Reloj",
         "description": "Con el add-on se chupa mucho",
-        "instructions": "Pone 12 cartas y chupa mucho alcohol",
-        "add-ons": "Ir chupando durante los 5 segundos",
+        "instructions": "Se colocan 12 cartas formando un reloj, se reparten 3 cartas por persona y se da vuelta la primera carta (representando la primera hora del reloj). Durante cinco segundos, cualquiera que tenga una carta con el número de la del reloj o con el número de la hora que representa puede usarla y nombrar a una persona. Todos deben contar cinco segundos, y en ese tiempo cualquiera puede renombrar a una persona usando una carta válida, y los cinco segundos vuelven a empezar. Si los cinco segundos terminan, entonces la última persona nombrada debe tomar tantos tragos como cartas se hayan usado en la ronda. Luego se da vuelta la siguiente hora del reloj y se repite. Si el número de la carta dada vuelta coincide con la hora que la carta representa, entonces la cantidad de tragos a tomar se duplica.",
+        "add-ons": "La persona a la que nombran debe tomar hasta que nombren a una persona nueva. La última persona debe tomaría los cinco segundos y además la cantidad de tragos que deba.",
         "faved": false
     },
     {
         "id": 2,
         "title": "The Names Game",
         "description": "Clave para romper el hielo",
-        "instructions": "Deci muchos nombres y chupa más alcohol",
+        "instructions": "Una persona comienza la ronda. Debe decir en voz alta el nombre de una persona y señalar a una distina. El turno pasa al que nombraron, quien debe repetir. El que duda o señala y nombra a la misma persona pierde.",
         "add-ons": "",
         "faved": false
     },
     {
         "id": 3,
         "title": "Zoo",
-        "description": "",
-        "instructions": "Todos son unos animales y hacen fondo sin dientes (?)",
-        "add-ons": "",
-        "faved": false
-    },
-    {
-        "id": 4,
-        "title": "Carrera de caballos",
-        "description": "Automatico",
-        "instructions": "Cuatro columnas, se van tirando cartas",
+        "description": "Muy divertido",
+        "instructions": "Cada persona se asigna un animal con un ruido. En cada turno, la persona debe hacer el ruido de su animal y el ruido del animal de la persona a quien le pasa el turno. Además, todos se deben tapar los dientes con los labios (cual vieja). La persona que muestre los dientes, se ría o se equivoque en cualquier sentido pierde",
         "add-ons": "",
         "faved": false
     },
     {
         "id": 5,
         "title": "El puente",
-        "description": "Fácil y rápido",
-        "instructions": "You know...",
-        "add-ons": "",
+        "description": "Fácil y rápido, para dos personas",
+        "instructions": "Se colocan 5 cartas boca arriba, una al lado de la otra, y en grupos de a una, tres y una carta (en ese orden), cada grupo separado por un \"puente\". El jugador comienza en un extremo y tiene que adivinar si la próxima carta del mazo es mayor, menor o igual a la carta actual. Si acierta, avanza a la siguiente carta, y si no retrocede y toma un trago. Si pasa por un puente (en cualquier momento) debe tomar un trago. Cada carta es reemplazada por la que salió del mazo.",
+        "add-ons": "Hacer ida y vuelta.",
         "faved": false
     },
     {
         "id": 6,
         "title": "Kiwis",
         "description": "",
-        "instructions": "'mis' kiwis, medio kiwi, 'destino' kiwis",
-        "add-ons": "Si se juega con limones en vez de kiwis puede ser más fácil",
+        "instructions": "Se asigna un número por persona. En cada turno se debe decir: 'mis' kiwis, medio kiwi, 'sus' kiwis, en donde el número 'mis' es el de la persona del turno y el número 'sus' es el número de la próxima persona que repite el turno.",
+        "add-ons": "",
         "faved": false
-    },
-    {
+    }
+    
+    ],
+    
+    "__noMeAcuerdoBienLasInstrucciones":{
         "id": 7,
         "title": "Contacto!",
          "description": "MUY rápido (sino no es divertido)",
-         "instructions": "Uno piensa una palabra y da la primera letra. La gente hace preguntas para descubrir la palabra. Si uno cree saber qué piensa el que preguntó grita \"contacto\", 5, 4, 3, 2, 1. El que tenia la palabra debe pensar otra con las mismas letras",
-         "add-ons": "",
-         "faved": false
-    },
-    {
-        "id": 8,
-        "title": "Juego largo",
-         "description": "-",
-         "instructions": "laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaargoooooooooooooooooooooooooooooooooooooooooooooooooooooo, muuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuy kaaaaaaaaaaaaaaaaaaaaaaaaaaaaaargooooooooooooooooooOO!!!!!!!!!!!!!!!!!!!",
-         "add-ons": "",
-         "faved": false
-    },
-    {
-        "id": 9,
-        "title": "Juego 3",
-         "description": "-",
-         "instructions": "-",
-         "add-ons": "",
-         "faved": false
-    },
-    {
-        "id": 10,
-        "title": "Juego 4",
-         "description": "-",
-         "instructions": "-",
-         "add-ons": "",
-         "faved": false
-    },
-    {
-        "id": 11,
-        "title": "Juego 5",
-         "description": "-",
-         "instructions": "-",
-         "add-ons": "",
-         "faved": false
-    },
-    {
-        "id": 12,
-        "title": "Juego 6",
-         "description": "-",
-         "instructions": "-",
+         "instructions": "Uno piensa una palabra y dice la primera letra. La gente entonces debe hacer preguntas indirectas del estilo \"¿Se usa en la cocina?\" para ir adivinando la palabra. Si cuando alguien hace una pregunta otra persona cree que está pensando en la misma palabra entonces le grita \"Contacto!\" y cuentan de 5 a 1. En ese tiempo, el que conoce la palabra tiene la posibilidad de cantar ...Si uno cree saber qué piensa el que preguntó grita \"contacto\", 5, 4, 3, 2, 1. El que tenia la palabra debe pensar otra con las mismas letras",
          "add-ons": "",
          "faved": false
     }
-
-    ]
+      
 }

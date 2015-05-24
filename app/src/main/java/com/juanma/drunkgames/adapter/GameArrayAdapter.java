@@ -1,4 +1,4 @@
-package com.juanma.alcoholgames.adapter;
+package com.juanma.drunkgames.adapter;
 
 
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.juanma.alcoholgames.Game;
-import com.juanma.alcoholgames.R;
+import com.juanma.drunkgames.Game;
+import com.juanma.drunkgames.R;
 
 import java.util.List;
 

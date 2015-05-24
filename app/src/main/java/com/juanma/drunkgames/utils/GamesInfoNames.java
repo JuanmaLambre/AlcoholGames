@@ -1,4 +1,4 @@
-package com.juanma.alcoholgames.utils;
+package com.juanma.drunkgames.utils;
 
 /*
 This class has string values used globally to pass arguments, specially between activities

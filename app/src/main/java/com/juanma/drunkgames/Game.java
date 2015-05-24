@@ -1,7 +1,7 @@
-package com.juanma.alcoholgames;
+package com.juanma.drunkgames;
 
 
-import com.juanma.alcoholgames.utils.GamesInfoNames;
+import com.juanma.drunkgames.utils.GamesInfoNames;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,15 +14,15 @@ public class Game implements Serializable {
     private String title, description, instructions, addons;
     private boolean isFavorite;
 
+    private static int maxId = 0;
+
+
     // Setters:
     public void fav() {
         isFavorite = true;
     }
     public void unfav() {
         isFavorite = false;
-    }
-    public void setFavorite(boolean isFaved) {
-        isFavorite = isFaved;
     }
     public void setTitle(String newTitle) {
         title = newTitle;
@@ -67,6 +67,8 @@ public class Game implements Serializable {
             newGame.instructions = jsonGame.getString(GamesInfoNames.GAME_INSTRUCTIONS);
             newGame.isFavorite = jsonGame.getBoolean(GamesInfoNames.GAME_ISFAV);
             newGame.id = jsonGame.getInt(GamesInfoNames.GAME_ID);
+            if (maxId < newGame.id)
+                maxId = newGame.id;
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -76,6 +78,7 @@ public class Game implements Serializable {
     }
 
     public Game() {
+        this.id = maxId++;
         this.title = null;
         this.description = null;
         this.addons = null;
@@ -129,4 +132,10 @@ public class Game implements Serializable {
         return false;
     }
 
+    public String getPrettyText() {
+        String gameText = "";
+        gameText += title + ":\n";
+        gameText += instructions;
+        return gameText;
+    }
 }

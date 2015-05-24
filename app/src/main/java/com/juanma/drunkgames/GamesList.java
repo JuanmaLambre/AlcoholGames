@@ -1,6 +1,6 @@
-package com.juanma.alcoholgames;
+package com.juanma.drunkgames;
 
-import com.juanma.alcoholgames.utils.GamesInfoNames;
+import com.juanma.drunkgames.utils.GamesInfoNames;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,8 +14,7 @@ Perceptron class
  */
 public class GamesList extends ArrayList<Game> {
 
-    static GamesList instance = null;
-
+    private static GamesList instance = null;
 
     private GamesList() {
         super();
@@ -68,9 +67,8 @@ public class GamesList extends ArrayList<Game> {
             jsonGames.put(GamesInfoNames.GAMES_ARRAY, gamesArray);
         } catch (JSONException e) {
             throw new RuntimeException(e);
-        } finally {
-            return jsonGames;
         }
+        return jsonGames;
     }
 
     public ArrayList<Game> getFavs() {

@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Alcohol Games</string>
+    <string name="app_name">DrunkGames</string>
 
     <!-- MainActivity ActionBar items -->
     <string name="favorites">Favoritos</string>
     <string name="search">Buscar</string>
-    <string name="addGame">Agregar</string>
+    <string name="addGame">Agregar juego</string>
     <string name="credits">Créditos</string>
 
     <!-- GameActivity values -->
@@ -14,6 +14,16 @@
     <string name="fav">Fav</string>
     <string name="edit">Editar</string>
     <string name="delete">Eliminar</string>
+
+    <!-- AddGameActivity values -->
+    <string name="newGame">Juego nuevo</string>
+    <string name="shortDescription">Descripción rápida:</string>
+    <string name="instructionTitle">Cómo jugar:</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="nameTitle">Nombre:</string>
+    <string name="cannotSave">No se puede guardar</string>
+    <string name="cannotSaveWarning">El juego debe tener título e instrucciones</string>
 
     <!-- Colors: -->
     <color name="white">#FFFFFF</color>
